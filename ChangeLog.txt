@@ -1,5 +1,8 @@
 Changelog
 
+4.7.1.6
+	Fixed _configSavePath being incorrect due to new KSP launcher introduced in 1.12.4
+
 4.7.1.5
 	Added AssemblyFileVersion
 	Updated version file for 1.12

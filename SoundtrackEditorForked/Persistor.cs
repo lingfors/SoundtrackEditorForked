@@ -10,19 +10,21 @@ namespace SoundtrackEditor
     {
         private static ConfigNode _config;
         private static string _configSavePath = "Playlists/playlists.cfg";
+        static string ConfigFileSavePath = KSPUtil.ApplicationRootPath + _configSavePath;
+
         //private static string _configSavePath2 = "GameData/SoundtrackEditor/PluginData/settings2.cfg";
         public static List<Playlist> LoadPlaylists()
         {
             try
             {
                 List<Playlist> playlists = new List<Playlist>();
-                _config = ConfigNode.Load(_configSavePath);
+                _config = ConfigNode.Load(ConfigFileSavePath);
                 if (_config == null)
                 {
-                    Debug.LogWarning("[STED] No config file present at " + _configSavePath + ". Loading stock tracks.");
+                    Debug.LogWarning("[STED] No config file present at " + ConfigFileSavePath + ". Loading stock tracks.");
                     return LoadStockPlaylist();
                 }
-                Utils.Log("Loading playlists: " + _configSavePath);
+                Utils.Log("Loading playlists: " + ConfigFileSavePath);
 
                 foreach (ConfigNode node in _config.nodes)
                 {
@@ -471,7 +473,7 @@ namespace SoundtrackEditor
                         preReq.AddValue("vesselType", pl.playWhen.vesselType);
                 }
 
-                settings.Save(_configSavePath);
+                settings.Save(ConfigFileSavePath);
             }
             catch (Exception ex)
             {
