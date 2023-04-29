@@ -168,6 +168,7 @@ namespace SoundtrackEditor
             music.constructionPlaylist.Add(emptyTrack);
 
             music.spacePlaylist.Clear();
+            music.adminFacilityAmbience = emptyTrack;
             music.astroComplexAmbience = emptyTrack;
             music.credits = emptyTrack;
             music.menuAmbience = emptyTrack;
