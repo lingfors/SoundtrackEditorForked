@@ -581,6 +581,9 @@ namespace SoundtrackEditor
             SoundtrackEditor.CurrentSituation.scene = Enums.ConvertScene(scenes.to);
             if (MonitorScene)
                 SoundtrackEditor.Instance.OnSituationChanged();
+
+            if (SoundtrackEditor.CurrentSituation.paused == Enums.Selector.True)
+                onGameUnpause();
         }
 
         /*private void OnGameSettingsApplied() { Utils.Log("#OnGameSettingsApplied"); }
