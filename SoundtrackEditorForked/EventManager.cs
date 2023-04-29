@@ -169,9 +169,16 @@ namespace SoundtrackEditor
                 if (IsFlightSituationChanged())
                     changed = true;
             }
-            else if (SoundtrackEditor.CurrentSituation.scene != Enums.Scenes.SpaceCentre)
+            else if (SoundtrackEditor.CurrentSituation.paused == Enums.Selector.True &&
+                SoundtrackEditor.CurrentSituation.scene != Enums.Scenes.SpaceCentre &&
+                SoundtrackEditor.CurrentSituation.scene != Enums.Scenes.Flight)
             {
-                SoundtrackEditor.CurrentSituation.paused = Enums.Selector.False;
+                // onGamePause() gets called every time the game time is stopped in the background,
+                // but we only want to treat the game as paused when the pause menu is shown.
+                // This can only be shown in SpaceCentre and in Flight, so if the CurrentSituation is
+                // set to paused in any other screen we can just call OnGameUnpaused()
+
+                onGameUnpause();
             }
 
             if (SoundtrackEditor.CurrentSituation.scene == Enums.Scenes.SpaceCentre ||
